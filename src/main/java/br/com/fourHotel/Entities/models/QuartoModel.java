@@ -46,12 +46,7 @@ public class QuartoModel implements Serializable {
 	@JoinColumn(name = "id_usuario", nullable = true)
 	private ClienteModel cliente;
 	
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "quarto_servico",
-		joinColumns = @JoinColumn(name = "numero_quarto"),
-		inverseJoinColumns = @JoinColumn(name = "id_servico")
-	)
+	@OneToMany(mappedBy = "quarto")
 	private List<ServicoModel> servicos;
 	
 	@Column(name="estadia")

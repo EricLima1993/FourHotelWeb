@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.fourHotel.Entities.models.QuartoModel;
 
 @Repository
-public interface QuartoRepository extends JpaRepository<Integer, QuartoModel> {
+public interface QuartoRepository extends JpaRepository<QuartoModel, Integer> {
 
 }

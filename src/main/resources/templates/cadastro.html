@@ -5,6 +5,25 @@
 <title>Cadastrar</title>
 </head>
 <body>
+	<form th:action="@{./cadastrar}" method="POST" th:object="${cliente}">
+		
+		Nome: <input type="text" name="nome" th:field="*{nome}" />
+		<br />
 
+		login: <input type="text" name="login" th:field="*{login}" />
+		<br />
+
+		Senha: <input type="password" name="senha" th:field="*{senha}" />
+		<br />
+
+		CPF: <input type="text" name="cpf" th:field="*{cpf}" />
+		<br />
+		
+		Idade: <input type="text" name="idade" th:field="*{idade}" />
+		<br />
+
+		<input type="submit" value="Cadastrar" />
+			
+	</form>
 </body>
 </html>

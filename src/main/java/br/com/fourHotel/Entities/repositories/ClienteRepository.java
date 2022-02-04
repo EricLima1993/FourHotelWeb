@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.fourHotel.Entities.models.ClienteModel;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Integer, ClienteModel>{
+public interface ClienteRepository extends JpaRepository<ClienteModel, Integer>{
 
 }

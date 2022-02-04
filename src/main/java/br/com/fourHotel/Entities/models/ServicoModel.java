@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -39,8 +42,8 @@ public class ServicoModel implements Serializable {
 	@Column(name="tipo")
 	private TipoProduto tipo;
 	
-	@JsonBackReference
-	@OneToOne(mappedBy = "servicos")
+	@ManyToOne
+	@JoinColumn(name = "numero_quarto", nullable = true)
 	private QuartoModel quarto;
 
 	public ServicoModel() {

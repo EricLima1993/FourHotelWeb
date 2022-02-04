@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.fourHotel.Entities.models.ServicoModel;
 
 @Repository
-public interface ServicoRepository extends JpaRepository<Integer, ServicoModel> {
+public interface ServicoRepository extends JpaRepository<ServicoModel, Integer> {
 
 }

@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.fourHotel.Entities.models.FuncionarioModel;
 
-public interface FuncionarioRepository extends JpaRepository<Integer, FuncionarioModel> {
+public interface FuncionarioRepository extends JpaRepository<FuncionarioModel, Integer> {
 
 }
