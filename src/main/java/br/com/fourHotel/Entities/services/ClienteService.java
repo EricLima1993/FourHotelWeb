@@ -23,6 +23,7 @@ public class ClienteService {
 	}
 	
 	public ClienteModel buscar(ClienteModel cli) throws AccountNotFoundException {
+		//return cr.findByLogin(cli.getLogin());
 		Optional<ClienteModel> obj = cr.search(cli.getLogin() ,cli.getSenha());
 		return obj.orElseThrow(() -> new AccountNotFoundException("Senha ou login invalido"));
 	}

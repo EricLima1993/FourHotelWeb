@@ -7,18 +7,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="tb_quarto")
@@ -48,7 +46,8 @@ public class QuartoModel implements Serializable {
       joinColumns = 
         { @JoinColumn(name = "numero_quarto", referencedColumnName = "numero_quarto") },
       inverseJoinColumns = 
-        { @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario") })
+        { @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario") }
+    )
 	private ClienteModel cliente;
 	
 	@OneToMany(mappedBy="quarto")

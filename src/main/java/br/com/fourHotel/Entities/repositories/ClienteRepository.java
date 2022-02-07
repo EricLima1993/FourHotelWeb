@@ -11,7 +11,10 @@ import br.com.fourHotel.Entities.models.ClienteModel;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<ClienteModel, Integer>{
-
-	@Query("SELECT DISTINCT obj FROM ClienteModel obj WHERE obj.login LIKE %:login% AND obj.senha LIKE %:senha%")
+	
+	ClienteModel findByLogin(String login);
+	
+	@Query("SELECT obj FROM ClienteModel obj WHERE obj.login LIKE %:login% AND obj.senha LIKE %:senha%")
 	Optional<ClienteModel> search(@Param("login")String login, @Param("senha")String senha);
+	
 }

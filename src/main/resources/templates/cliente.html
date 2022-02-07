@@ -8,22 +8,13 @@
 	<div th:fragment="menu">
 		<a th:href="'./quartos'">Alugar um quarto</a>
 		<a th:href="'../servico/produtos'">Pedir algo</a>
+		<a th:href="'./historico'">Historicos de pedidos</a>
 	</div>
 	<form method="GET" th:object="${cliente}">
 		<h6>Olá <span th:text="${cliente.nome}"></span></h6>
 		<div th:if="${cliente.quarto != null}">
 			<h6>Seu Quarto é o número <span th:text="${cliente.quarto.numeroQuarto}"></span></h6>
-			<div th:if="${cliente.quarto.servicos != null}">
-				<th:block th:each="servico : ${cliente.quarto.servicos}">
-		
-				<div style="border: solid 1px;">
-			
-					Texto: 	<span th:text="${servico.nome}"></span>
-					Data:	<span th:text="${servico.valor}"></span>
-					Numero:	<span th:text="${servico.tipo}"></span>
-				</div>
-				</th:block>
-			</div>
+
 		</div>
 	</form>
 </body>

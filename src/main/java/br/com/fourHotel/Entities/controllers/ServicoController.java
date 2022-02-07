@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.fourHotel.Entities.models.ClienteModel;
+import br.com.fourHotel.Entities.models.QuartoModel;
 import br.com.fourHotel.Entities.models.ServicoModel;
 import br.com.fourHotel.Entities.services.QuartoService;
 import br.com.fourHotel.Entities.services.ServicoService;
@@ -39,9 +40,18 @@ public class ServicoController {
 	public String comprar(@PathVariable int idServico, Model model) {
 		ClienteModel cliente = ClienteDados.getClienteLogado();
 		ServicoModel servico = new ServicoModel();
+		QuartoModel quarto = new QuartoModel();
+		quarto = qs.buscarPorNumero(cliente.getQuarto().getNumeroQuarto());
+		List<ServicoModel> servicos = new ArrayList();
+
+		servicos = quarto.getServicos();
 		servico = ss.buscarPorNumero(idServico);
-		cliente.getQuarto().getServicos().add(servico);
-		servico.setQuarto(cliente.getQuarto());
+		servico.setLogin(cliente.getLogin());
+		servicos.add(servico);
+
+		quarto.setServicos(servicos);
+		cliente.setQuarto(quarto);
+		servico.setQuarto(quarto);
 		qs.atualizar(cliente.getQuarto());
 		ss.atualizar(servico);
 		

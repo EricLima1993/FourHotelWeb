@@ -2,6 +2,7 @@ package br.com.fourHotel.Entities.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -44,6 +46,9 @@ public class ServicoModel implements Serializable {
 	
 	@Column(name="tipo")
 	private TipoProduto tipo;
+	
+	@Column(name="")
+	private String Login;
 	
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -108,6 +113,14 @@ public class ServicoModel implements Serializable {
 
 	public void setQuarto(QuartoModel quarto) {
 		this.quarto = quarto;
+	}
+
+	public String getLogin() {
+		return Login;
+	}
+
+	public void setLogin(String login) {
+		Login = login;
 	}
 
 }

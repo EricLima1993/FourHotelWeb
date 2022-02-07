@@ -45,9 +45,17 @@ public class PrincipalController {
 		
 		ClienteModel obj = new ClienteModel();
 		obj.setQuarto(new QuartoModel());
-		
+		List<QuartoModel> quartos = new ArrayList();
 		try {
 			obj = cs.buscar(cliente);
+			quartos = qs.buscarTodos();
+			for(QuartoModel quarto: quartos) {
+				if(quarto.getCliente() != null) {
+					if(quarto.getCliente().getIdUsuario() == obj.getIdUsuario()) {
+						obj.setQuarto(quarto);
+					}
+				}
+			}
 			ClienteDados.setClienteLogado(obj);
 			return "redirect:../cliente/home";
 		} catch (AccountNotFoundException e) {
