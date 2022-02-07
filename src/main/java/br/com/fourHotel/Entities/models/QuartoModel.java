@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,15 +43,19 @@ public class QuartoModel implements Serializable {
 	@Column(name="cama_casal")
 	private int camaCasal;
 	
-	@OneToOne
-	@JoinColumn(name = "id_usuario", nullable = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "quarto_cliente", 
+      joinColumns = 
+        { @JoinColumn(name = "numero_quarto", referencedColumnName = "numero_quarto") },
+      inverseJoinColumns = 
+        { @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario") })
 	private ClienteModel cliente;
 	
-	@OneToMany(mappedBy = "quarto")
+	@OneToMany(mappedBy="quarto")
 	private List<ServicoModel> servicos;
 	
 	@Column(name="estadia")
-	private int estadia;
+	private Integer estadia;
 	
 	@Column(name="checkin")
 	private Date checkIn;
@@ -128,11 +133,11 @@ public class QuartoModel implements Serializable {
 		this.servicos = servicos;
 	}
 
-	public int getEstadia() {
+	public Integer getEstadia() {
 		return estadia;
 	}
 
-	public void setEstadia(int estadia) {
+	public void setEstadia(Integer estadia) {
 		this.estadia = estadia;
 	}
 

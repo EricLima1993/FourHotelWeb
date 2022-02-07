@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servicos</title>
+</head>
+<body>
+	<th:block th:each="servico : ${servicos}">
+		
+		<div style="border: solid 1px;">
+			
+			Texto: 	<span th:text="${servico.nome}"></span>
+			Data:	<span th:text="${servico.valor}"></span>
+			Numero:	<span th:text="${servico.tipo}"></span>
+			<a th:href="'./compra/'+${servico.idServico}">Comprar</a>
+		</div>
+	</th:block>
+</body>
+</html>

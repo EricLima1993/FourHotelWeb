@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quartos</title>
+</head>
+<body>
+	<th:block th:each="quarto : ${quartos}">
+		
+		<div style="border: solid 1px;">
+			
+			Texto: 	<span th:text="${quarto.numeroQuarto}"></span>
+			Data:	<span th:text="${quarto.valor}"></span>
+			Numero:	<span th:text="${quarto.camaSolteiro}"></span>
+			Valor:	<span th:text="${quarto.camaCasal}"></span>
+			<a th:href="'./alugar/'+${quarto.numeroQuarto}">Alugar</a>
+		</div>
+	</th:block>
+</body>
+</html>

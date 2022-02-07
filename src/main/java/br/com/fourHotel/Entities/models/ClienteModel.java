@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name="tb_cliente")
@@ -23,8 +26,7 @@ public class ClienteModel extends PessoaModel implements Serializable {
 	@Column(name="idade")
 	private int idade;
 	
-	@OneToOne
-	@JoinColumn(name = "numero_quarto", nullable = true)
+	@OneToOne(mappedBy = "cliente")
 	private QuartoModel quarto;
 	
 	public ClienteModel() {
@@ -90,7 +92,8 @@ public class ClienteModel extends PessoaModel implements Serializable {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-
+	
+	@Transient
 	public QuartoModel getQuarto() {
 		return quarto;
 	}

@@ -5,6 +5,13 @@
 <title>Login</title>
 </head>
 <body>
+	<form th:action="@{./entrar}" method="POST" th:object="${cliente}">
+		Digite seu login: <input type="text" name="login" placeholder="Login..." th:field="*{login}" />
+		<br />
 
+		Digite sua senha: <input type="password" name="senha" placeholder="senha..." th:field="*{senha}" />
+		<br />
+		<input type="submit" value="Entrar" />	
+	</form>
 </body>
 </html>

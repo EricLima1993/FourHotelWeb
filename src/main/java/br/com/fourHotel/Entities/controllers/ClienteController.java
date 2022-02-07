@@ -26,4 +26,10 @@ public class ClienteController {
 		
 		return "cliente";
 	}
+	
+	@GetMapping(path = "/quartos")
+	public String quartos() {
+		
+		return "redirect:../quarto/lista";
+	}
 }
