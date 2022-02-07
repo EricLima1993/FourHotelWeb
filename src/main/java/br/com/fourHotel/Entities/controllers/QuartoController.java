@@ -43,7 +43,7 @@ public class QuartoController {
 		quarto.setCliente(cliente);
 		quarto = qs.atualizar(quarto);
 		
-		cliente.getQuarto().setServicos(new ArrayList());
+		cliente.getQuarto().setPedidos(new ArrayList());
 		
 		ClienteDados.setClienteLogado(cliente);
 		return "redirect:../../cliente/home";

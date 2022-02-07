@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -51,7 +50,7 @@ public class QuartoModel implements Serializable {
 	private ClienteModel cliente;
 	
 	@OneToMany(mappedBy="quarto")
-	private List<ServicoModel> servicos;
+	private List<PedidoModel> pedidos;
 	
 	@Column(name="estadia")
 	private Integer estadia;
@@ -64,14 +63,14 @@ public class QuartoModel implements Serializable {
 	}
 	
 	public QuartoModel(Integer numeroQuarto, Boolean ocupado, Double valor, int camaSolteiro, int camaCasal,
-			ClienteModel cliente, List<ServicoModel> servicos, int estadia, Date checkIn) {
+			ClienteModel cliente, List<PedidoModel> pedidos, int estadia, Date checkIn) {
 		this.numeroQuarto = numeroQuarto;
 		this.ocupado = ocupado;
 		this.valor = valor;
 		this.camaSolteiro = camaSolteiro;
 		this.camaCasal = camaCasal;
 		this.cliente = cliente;
-		this.servicos = servicos;
+		this.pedidos = pedidos;
 		this.estadia = estadia;
 		this.checkIn = checkIn;
 	}
@@ -124,12 +123,12 @@ public class QuartoModel implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public List<ServicoModel> getServicos() {
-		return servicos;
+	public List<PedidoModel> getPedidos() {
+		return pedidos;
 	}
 
-	public void setServicos(List<ServicoModel> servicos) {
-		this.servicos = servicos;
+	public void setPedidos(List<PedidoModel> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	public Integer getEstadia() {

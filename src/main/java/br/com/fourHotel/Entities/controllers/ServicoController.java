@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.fourHotel.Entities.models.ClienteModel;
+import br.com.fourHotel.Entities.models.PedidoModel;
 import br.com.fourHotel.Entities.models.QuartoModel;
 import br.com.fourHotel.Entities.models.ServicoModel;
+import br.com.fourHotel.Entities.services.PedidoService;
 import br.com.fourHotel.Entities.services.QuartoService;
 import br.com.fourHotel.Entities.services.ServicoService;
 import br.com.fourHotel.util.ClienteDados;
@@ -25,6 +27,8 @@ public class ServicoController {
 	private ServicoService ss;
 	@Autowired
 	private QuartoService qs;
+	@Autowired
+	private PedidoService ps;
 	
 	@GetMapping(path = "/produtos")
 	public String produtos(Model model) {
@@ -41,19 +45,26 @@ public class ServicoController {
 		ClienteModel cliente = ClienteDados.getClienteLogado();
 		ServicoModel servico = new ServicoModel();
 		QuartoModel quarto = new QuartoModel();
+		PedidoModel pedido = new PedidoModel();
 		quarto = qs.buscarPorNumero(cliente.getQuarto().getNumeroQuarto());
-		List<ServicoModel> servicos = new ArrayList();
+		List<PedidoModel> pedidos = new ArrayList();
 
-		servicos = quarto.getServicos();
+		pedidos = quarto.getPedidos();
 		servico = ss.buscarPorNumero(idServico);
-		servico.setLogin(cliente.getLogin());
-		servicos.add(servico);
+		
+		pedido.setNome(servico.getNome());
+		pedido.setTipo(servico.getTipo());
+		pedido.setValor(servico.getValor());
+		pedido.setLogin(cliente.getLogin());
+		pedido.setQuarto(quarto);
+		
+		ps.atualizar(pedido);
+		
+		pedidos.add(pedido);
 
-		quarto.setServicos(servicos);
+		quarto.setPedidos(pedidos);
 		cliente.setQuarto(quarto);
-		servico.setQuarto(quarto);
 		qs.atualizar(cliente.getQuarto());
-		ss.atualizar(servico);
 		
 		ClienteDados.setClienteLogado(cliente);
 		

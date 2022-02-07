@@ -5,15 +5,15 @@
 <title>Historico</title>
 </head>
 <body>
-		<div th:if="${cliente.quarto.servicos != null}">
-			<th:block th:each="servico : ${cliente.quarto.servicos}">
+		<div th:if="${cliente.quarto.pedidos != null}">
+			<th:block th:each="pedido : ${cliente.quarto.pedidos}">
 		
 			<div style="border: solid 1px;">
 			
-				Produto: 	<span th:text="${servico.nome}"></span>
-				valor:	<span th:text="${servico.valor}"></span>
-				Tipo de servico:	<span th:text="${servico.tipo}"></span>
-				Quem pediu: <span th:text="${servico.login}"></span>
+				Produto: 	<span th:text="${pedido.nome}"></span>
+				valor:	<span th:text="${pedido.valor}"></span>
+				Tipo de servico:	<span th:text="${pedido.tipo}"></span>
+				Quem pediu: <span th:text="${pedido.login}"></span>
 			</div>
 			</th:block>
 		</div>
