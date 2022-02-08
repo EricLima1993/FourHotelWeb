@@ -29,7 +29,7 @@ public class PrincipalController {
 	
 	@GetMapping(path = "/")
 	public String telaInicial() {
-		
+		ClienteDados.setClienteLogado(null);
 		return "principal";
 	}
 	

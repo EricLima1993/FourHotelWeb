@@ -5,6 +5,13 @@
 <title>Quartos</title>
 </head>
 <body>
+	<div th:fragment="menu">
+		<a th:href="'./quartos'">Alugar um quarto</a>
+		<a th:href="'../servico/produtos'">Pedir algo</a>
+		<a th:href="'../cliente/historico'">Historicos de pedidos</a>
+		<a th:href="'../cliente/home'">Voltar</a>
+		<a th:href="'../principal/'">Sair</a>
+	</div>
 	<th:block th:each="quarto : ${quartos}">
 		
 		<div style="border: solid 1px;">
