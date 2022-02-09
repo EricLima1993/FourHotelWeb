@@ -17,6 +17,7 @@ import br.com.fourHotel.Entities.models.ServicoModel;
 import br.com.fourHotel.Entities.services.PedidoService;
 import br.com.fourHotel.Entities.services.QuartoService;
 import br.com.fourHotel.Entities.services.ServicoService;
+import br.com.fourHotel.enuns.TipoProduto;
 import br.com.fourHotel.util.ClienteDados;
 
 @Controller
@@ -33,11 +34,37 @@ public class ServicoController {
 	@GetMapping(path = "/produtos")
 	public String produtos(Model model) {
 		ClienteModel cliente = ClienteDados.getClienteLogado();
-		List<ServicoModel> servicos = new ArrayList();
-		servicos = ss.buscarTodos();
-		model.addAttribute("servicos",servicos);
 		
-		return "servicos";
+		if(cliente.getQuarto() == null) {
+			return "redirect:../cliente/home";
+		}else {
+		
+			List<ServicoModel> servicos = new ArrayList();
+			List<ServicoModel> servicosCo = new ArrayList();
+			List<ServicoModel> servicosBe = new ArrayList();
+			List<ServicoModel> servicosBA = new ArrayList();
+			List<ServicoModel> servicosSe = new ArrayList();
+			servicos = ss.buscarTodos();
+		
+			for(ServicoModel servico: servicos) {
+				if(servico.getTipo().equals(TipoProduto.COMIDA)) {
+					servicosCo.add(servico);
+				}else if(servico.getTipo().equals(TipoProduto.BEBIDA)) {
+					servicosBe.add(servico);
+				}else if(servico.getTipo().equals(TipoProduto.BEBIDA_ALCOOLICA)) {
+					servicosBA.add(servico);
+				}else if(servico.getTipo().equals(TipoProduto.SERVICO)) {
+					servicosSe.add(servico);
+				}
+			}
+		
+			model.addAttribute("servicosCo",servicosCo);
+			model.addAttribute("servicosBe",servicosBe);
+			model.addAttribute("servicosBA",servicosBA);
+			model.addAttribute("servicosSe",servicosSe);
+		
+			return "servicos";
+		}
 	}
 	
 	@GetMapping(path = "/compra/{idServico}")

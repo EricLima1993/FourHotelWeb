@@ -17,6 +17,7 @@ import br.com.fourHotel.Entities.models.ClienteModel;
 import br.com.fourHotel.Entities.models.QuartoModel;
 import br.com.fourHotel.Entities.services.ClienteService;
 import br.com.fourHotel.Entities.services.QuartoService;
+import br.com.fourHotel.enuns.TipoQuarto;
 import br.com.fourHotel.util.ClienteDados;
 
 @Controller
@@ -32,8 +33,24 @@ public class QuartoController {
 	public String quartos(Model model) {
 		ClienteModel cliente = ClienteDados.getClienteLogado();
 		List<QuartoModel> quartos = new ArrayList();
+		List<QuartoModel> quartos5 = new ArrayList();
+		List<QuartoModel> quartos4 = new ArrayList();
+		List<QuartoModel> quartos3 = new ArrayList();
 		quartos = qs.buscarTodos();
-		model.addAttribute("quartos",quartos);
+		
+		for(QuartoModel quarto: quartos) {
+			if(quarto.getTipo().equals(TipoQuarto.CINCO_ESTRELAS)) {
+				quartos5.add(quarto);
+			}else if(quarto.getTipo().equals(TipoQuarto.QUATRO_ESTRELAS)) {
+				quartos4.add(quarto);
+			}else if(quarto.getTipo().equals(TipoQuarto.TRES_ESTRELAS)){
+				quartos3.add(quarto);
+			}
+		}
+		
+		model.addAttribute("quartos5",quartos5);
+		model.addAttribute("quartos4",quartos4);
+		model.addAttribute("quartos3",quartos3);
 		return "quartos";
 	}
 	@GetMapping(path = "/alugar/{numeroQuarto}")

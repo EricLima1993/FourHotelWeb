@@ -5,6 +5,7 @@
 <title>Cadastrar</title>
 </head>
 <body>
+	<a th:href="'../principal/'">Voltar</a>
 	<form th:action="@{./cadastrar}" method="POST" th:object="${cliente}">
 		
 		Nome: <input type="text" name="nome" th:field="*{nome}" />

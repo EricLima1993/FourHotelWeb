@@ -43,10 +43,6 @@ public class ServicoModel implements Serializable {
 	
 	@Column(name="tipo")
 	private TipoProduto tipo;
-	
-	@Column(name="")
-	private String Login;
-	
 
 	public ServicoModel() {
 		super();
@@ -90,14 +86,6 @@ public class ServicoModel implements Serializable {
 
 	public void setTipo(TipoProduto tipo) {
 		this.tipo = tipo;
-	}
-
-	public String getLogin() {
-		return Login;
-	}
-
-	public void setLogin(String login) {
-		Login = login;
 	}
 
 }
