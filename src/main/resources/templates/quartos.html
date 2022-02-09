@@ -16,12 +16,15 @@
 		
 		<div style="border: solid 1px;">
 			
-			Texto: 	<span th:text="${quarto.numeroQuarto}"></span>
-			Data:	<span th:text="${quarto.valor}"></span>
-			Numero:	<span th:text="${quarto.camaSolteiro}"></span>
-			Valor:	<span th:text="${quarto.camaCasal}"></span>
+			Numero: 	<span th:text="${quarto.numeroQuarto}"></span>
+			valor diaria:	<span th:text="${quarto.valor}"></span>
+			Camas de solteiro:	<span th:text="${quarto.camaSolteiro}"></span>
+			Camas de casal:	<span th:text="${quarto.camaCasal}"></span>
+			
 			<a th:href="'./alugar/'+${quarto.numeroQuarto}">Alugar</a>
 		</div>
 	</th:block>
+	
+	
 </body>
 </html>

@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.com.fourHotel.enuns.TipoQuarto;
+
 @Entity
 @Table(name="tb_quarto")
 public class QuartoModel implements Serializable {
@@ -58,12 +60,15 @@ public class QuartoModel implements Serializable {
 	@Column(name="checkin")
 	private Date checkIn;
 	
+	@Column(name="tipo")
+	private TipoQuarto tipo;
+	
 	public QuartoModel() {
 		super();
 	}
 	
 	public QuartoModel(Integer numeroQuarto, Boolean ocupado, Double valor, int camaSolteiro, int camaCasal,
-			ClienteModel cliente, List<PedidoModel> pedidos, int estadia, Date checkIn) {
+			ClienteModel cliente, List<PedidoModel> pedidos, int estadia, Date checkIn, TipoQuarto tipo) {
 		this.numeroQuarto = numeroQuarto;
 		this.ocupado = ocupado;
 		this.valor = valor;
@@ -73,6 +78,7 @@ public class QuartoModel implements Serializable {
 		this.pedidos = pedidos;
 		this.estadia = estadia;
 		this.checkIn = checkIn;
+		this.tipo = tipo;
 	}
 
 	public Integer getNumeroQuarto() {
@@ -145,6 +151,14 @@ public class QuartoModel implements Serializable {
 
 	public void setCheckIn(Date checkIn) {
 		this.checkIn = checkIn;
+	}
+
+	public TipoQuarto getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoQuarto tipo) {
+		this.tipo = tipo;
 	}
 	
 }

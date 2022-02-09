@@ -15,7 +15,7 @@
 		<h6>Olá <span th:text="${cliente.nome}"></span></h6>
 		<div th:if="${cliente.quarto != null}">
 			<h6>Seu Quarto é o número <span th:text="${cliente.quarto.numeroQuarto}"></span></h6>
-
+			<h6>Sua estadia termina em: <span th:text="${cliente.quarto.checkIn}"></span></h6>
 		</div>
 	</form>
 </body>
