@@ -14,7 +14,9 @@
 	</div>
 	<h2>Quartos 5 estrelas</h2>
 	<th:block th:each="quarto5 : ${quartos5}">
+		<div th:if="${quarto5.ocupado != true}">
 
+		
 			<div style="border: solid 1px;">
 			
 				Numero: 	<span th:text="${quarto5.numeroQuarto}"></span>
@@ -23,11 +25,11 @@
 				Camas de casal:	<span th:text="${quarto5.camaCasal}"></span>
 				<a th:href="'./alugar/'+${quarto5.numeroQuarto}">Alugar</a>
 			</div>
-
+		</div>
 	</th:block>
 	<h2>Quartos 4 estrelas</h2>
 	<th:block th:each="quarto4 : ${quartos4}">
-
+		<div th:if="${quarto4.ocupado != true}">
 			<div style="border: solid 1px;">
 			
 				Numero: 	<span th:text="${quarto4.numeroQuarto}"></span>
@@ -37,11 +39,11 @@
 			
 				<a th:href="'./alugar/'+${quarto4.numeroQuarto}">Alugar</a>
 			</div>
-
+		</div>
 	</th:block>
 	<h2>Quartos 3 estrelas</h2>
 	<th:block th:each="quarto3 : ${quartos3}">
-
+		<div th:if="${quarto3.ocupado != true}">
 			<div style="border: solid 1px;">
 			
 				Numero: 	<span th:text="${quarto3.numeroQuarto}"></span>
@@ -51,7 +53,7 @@
 			
 				<a th:href="'./alugar/'+${quarto3.numeroQuarto}">Alugar</a>
 			</div>
-
+		</div>
 	</th:block>
 	
 </body>

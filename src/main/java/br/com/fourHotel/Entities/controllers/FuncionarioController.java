@@ -20,6 +20,7 @@ import br.com.fourHotel.Entities.services.FuncionarioService;
 import br.com.fourHotel.Entities.services.QuartoService;
 import br.com.fourHotel.util.ClienteDados;
 import br.com.fourHotel.util.FuncionarioDados;
+import br.com.fourHotel.util.QuartoDados;
 
 @Controller
 @RequestMapping("/funcionario")
@@ -79,6 +80,26 @@ public class FuncionarioController {
 		}else {
 			return "redirect:../quarto/listaf";
 		}
+	}
+	
+	@GetMapping(path = "/pedir")
+	public String pedir(Model model) {
+		QuartoModel quarto = new QuartoModel();
+		model.addAttribute("quarto", quarto);
 		
+		return "buscarquarto";
+	}
+	
+	@PostMapping(path = "/buscarquarto")
+	public String buscarQuarto(QuartoModel quarto) {
+		QuartoModel obj = new QuartoModel();
+		
+		try {
+			obj = qs.buscarPorNumero(quarto.getNumeroQuarto());
+			QuartoDados.setQuartoSelecionado(quarto);
+			return "redirect:../servico/produtosf";
+		} catch (Exception e) {
+			return "redirect:../funcionario/home";
+		}
 	}
 }

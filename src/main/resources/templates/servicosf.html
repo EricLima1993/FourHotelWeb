@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servicos</title>
+</head>
+<body>
+	<div th:fragment="menu">
+
+		<a th:href="'../funcionario/home'">Voltar</a>
+		<a th:href="'../principal/'">Sair</a>
+	</div>
+	<h2>Comidas</h2>
+	<th:block th:each="servicoCo : ${servicosCo}">
+		
+		<div style="border: solid 1px;">
+			
+			Item: 	<span th:text="${servicoCo.nome}"></span>
+			Valor:	<span th:text="${servicoCo.valor}"></span>
+			Tipo:	<span th:text="${servicoCo.tipo}"></span>
+			<a th:href="'./compraf/'+${servicoCo.idServico}">Comprar</a>
+		</div>
+	</th:block>
+	<h2>Bebidas</h2>
+	<th:block th:each="servicoBe : ${servicosBe}">
+		
+		<div style="border: solid 1px;">
+			
+			Item: 	<span th:text="${servicoBe.nome}"></span>
+			Valor:	<span th:text="${servicoBe.valor}"></span>
+			Tipo:	<span th:text="${servicoBe.tipo}"></span>
+			<a th:href="'./compraf/'+${servicoBe.idServico}">Comprar</a>
+		</div>
+	</th:block>
+	<h2>Bebidas Alcoolicas</h2>
+	<th:block th:each="servicoBA : ${servicosBA}">
+		
+		<div style="border: solid 1px;">
+			
+			Item: 	<span th:text="${servicoBA.nome}"></span>
+			Valor:	<span th:text="${servicoBA.valor}"></span>
+			Tipo:	<span th:text="${servicoBA.tipo}"></span>
+			<a th:href="'./compraf/'+${servicoBA.idServico}">Comprar</a>
+		</div>
+	</th:block>
+	<h2>Serviços de Quarto</h2>
+	<th:block th:each="servicoSe : ${servicosSe}">
+		
+		<div style="border: solid 1px;">
+			
+			Item: 	<span th:text="${servicoSe.nome}"></span>
+			Valor:	<span th:text="${servicoSe.valor}"></span>
+			Tipo:	<span th:text="${servicoSe.tipo}"></span>
+			<a th:href="'./compraf/'+${servicoSe.idServico}">Comprar</a>
+		</div>
+	</th:block>
+</body>
+</html>
