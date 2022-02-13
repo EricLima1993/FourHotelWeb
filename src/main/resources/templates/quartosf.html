@@ -6,10 +6,7 @@
 </head>
 <body>
 	<div th:fragment="menu">
-		<a th:href="'./quartos'">Alugar um quarto</a>
-		<a th:href="'../servico/produtos'">Pedir algo</a>
-		<a th:href="'../cliente/historico'">Historicos de pedidos</a>
-		<a th:href="'../cliente/home'">Voltar</a>
+		<a th:href="'../funcionario/home'">Voltar</a>
 		<a th:href="'../principal/'">Sair</a>
 	</div>
 	<h2>Quartos 5 estrelas</h2>
@@ -21,7 +18,7 @@
 				valor diaria:	<span th:text="${quarto5.valor}"></span>
 				Camas de solteiro:	<span th:text="${quarto5.camaSolteiro}"></span>
 				Camas de casal:	<span th:text="${quarto5.camaCasal}"></span>
-				<a th:href="'./alugar/'+${quarto5.numeroQuarto}">Alugar</a>
+				<a th:href="'./alugarf/'+${quarto5.numeroQuarto}">Alugar</a>
 			</div>
 
 	</th:block>
@@ -35,7 +32,7 @@
 				Camas de solteiro:	<span th:text="${quarto4.camaSolteiro}"></span>
 				Camas de casal:	<span th:text="${quarto4.camaCasal}"></span>
 			
-				<a th:href="'./alugar/'+${quarto4.numeroQuarto}">Alugar</a>
+				<a th:href="'./alugarf/'+${quarto4.numeroQuarto}">Alugar</a>
 			</div>
 
 	</th:block>
@@ -49,7 +46,7 @@
 				Camas de solteiro:	<span th:text="${quarto3.camaSolteiro}"></span>
 				Camas de casal:	<span th:text="${quarto3.camaCasal}"></span>
 			
-				<a th:href="'./alugar/'+${quarto3.numeroQuarto}">Alugar</a>
+				<a th:href="'./alugarf/'+${quarto3.numeroQuarto}">Alugar</a>
 			</div>
 
 	</th:block>

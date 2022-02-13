@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Buscar o cliente</title>
+</head>
+<body>
+	<form th:action="@{./buscar}" method="POST" th:object="${cliente}">
+		Qual é o cliente: <input type="text" name="login" placeholder="Login..." th:field="*{login}" />
+		<br />
+
+		<input type="submit" value="proximo" />	
+	</form>
+</body>
+</html>

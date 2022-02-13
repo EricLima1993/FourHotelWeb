@@ -17,4 +17,7 @@ public interface ClienteRepository extends JpaRepository<ClienteModel, Integer>{
 	@Query("SELECT obj FROM ClienteModel obj WHERE obj.login LIKE %:login% AND obj.senha LIKE %:senha%")
 	Optional<ClienteModel> search(@Param("login")String login, @Param("senha")String senha);
 	
+	@Query("SELECT obj FROM ClienteModel obj WHERE obj.login LIKE %:login%")
+	Optional<ClienteModel> searchLogin(@Param("login")String login);
+	
 }

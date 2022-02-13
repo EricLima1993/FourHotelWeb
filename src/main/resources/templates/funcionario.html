@@ -5,6 +5,14 @@
 <title>Home</title>
 </head>
 <body>
-
+	<div th:fragment="menu">
+		<a th:href="'./alugar'">Alugar um quarto para um cliente</a>
+		<a th:href="'../servico/produtos'">Fazer um pedido para o cliente</a>
+		<a th:href="'./historico'">Encerrar uma estadia</a>
+		<a th:href="'../principal/'">Sair</a>
+	</div>
+		<form method="GET" th:object="${funcionario}">
+		<h6>Olá <span th:text="${funcionario.nome}"></span></h6>
+	</form>
 </body>
 </html>

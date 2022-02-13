@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.fourHotel.Entities.models.ClienteModel;
+import br.com.fourHotel.Entities.models.FuncionarioModel;
 import br.com.fourHotel.Entities.models.QuartoModel;
 import br.com.fourHotel.Entities.services.ClienteService;
+import br.com.fourHotel.Entities.services.FuncionarioService;
 import br.com.fourHotel.Entities.services.QuartoService;
 import br.com.fourHotel.util.ClienteDados;
+import br.com.fourHotel.util.FuncionarioDados;
 
 @Controller
 @RequestMapping("/principal")
@@ -26,6 +29,8 @@ public class PrincipalController {
 	private ClienteService cs;
 	@Autowired
 	private QuartoService qs;
+	@Autowired
+	private FuncionarioService fs;
 	
 	@GetMapping(path = "/")
 	public String telaInicial() {
@@ -38,6 +43,28 @@ public class PrincipalController {
 		ClienteModel cliente = new ClienteModel();
 		model.addAttribute("cliente", cliente);
 		return "login";
+	}
+	@GetMapping(path = "/loginf")
+	public String loginf(Model model) {
+		FuncionarioModel funcionario = new FuncionarioModel();
+		model.addAttribute("funcionario", funcionario);
+		return "loginf";
+	}
+	
+	@PostMapping(path = "/entrarf")
+	public String entrarf(FuncionarioModel funcionario) {
+		
+		FuncionarioModel obj = new FuncionarioModel();
+
+		try {
+			obj = fs.buscar(funcionario);
+
+			FuncionarioDados.setFuncinarioLogado(obj);
+			return "redirect:../funcionario/home";
+		} catch (AccountNotFoundException e) {
+			return "redirect:../principal/";
+		}
+
 	}
 	
 	@PostMapping(path = "/entrar")

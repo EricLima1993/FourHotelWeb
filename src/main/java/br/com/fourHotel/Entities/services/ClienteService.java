@@ -28,6 +28,11 @@ public class ClienteService {
 		return obj.orElseThrow(() -> new AccountNotFoundException("Senha ou login invalido"));
 	}
 	
+	public ClienteModel buscarLogin(ClienteModel cli) throws AccountNotFoundException {
+		Optional<ClienteModel> obj = cr.searchLogin(cli.getLogin());
+		return obj.orElseThrow(() -> new AccountNotFoundException("Senha ou login invalido"));
+	}
+	
 	public ClienteModel atualizar(ClienteModel obj) {
 		return cr.save(obj);
 	}
