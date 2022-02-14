@@ -102,4 +102,25 @@ public class FuncionarioController {
 			return "redirect:../funcionario/home";
 		}
 	}
+	
+	@GetMapping(path = "/encerrar")
+	public String encerrar(Model model) {
+		QuartoModel quarto = new QuartoModel();
+		model.addAttribute("quarto", quarto);
+		
+		return "buscarquartoencerramento";
+	}
+	
+	@PostMapping(path = "/buscarquartoencerramento")
+	public String buscarQuartoEncerramento(QuartoModel quarto) {
+		QuartoModel obj = new QuartoModel();
+		
+		try {
+			obj = qs.buscarPorNumero(quarto.getNumeroQuarto());
+			QuartoDados.setQuartoSelecionado(quarto);
+			return "redirect:../quarto/encerramento";
+		} catch (Exception e) {
+			return "redirect:../funcionario/home";
+		}
+	}
 }

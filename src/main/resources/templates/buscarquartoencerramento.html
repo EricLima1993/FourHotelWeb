@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quarto a ser encerrado</title>
+</head>
+<body>
+	<form th:action="@{./buscarquartoencerramento}" method="POST" th:object="${quarto}">
+		Digite o numero do quarto: <input type="text" name="login" placeholder="numero..." th:field="*{numeroQuarto}" />
+		<br />
+
+		<input type="submit" value="proximo" />	
+	</form>
+</body>
+</html>

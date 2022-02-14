@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Encerramento</title>
+</head>
+<body>
+	Numero do quarto: 	<span th:text="${quarto.numeroQuarto}"></span>
+	<th:block th:each="pedido : ${pedidos}">
+		
+		<div style="border: solid 1px;">
+			
+			Item: 	<span th:text="${pedido.nome}"></span>
+			Valor:	<span th:text="${pedido.valor}"></span>
+			Tipo:	<span th:text="${pedido.tipo}"></span>
+		</div>
+	</th:block>
+	Valor do quarto: 	<span th:text="${quarto.valor}"></span>
+	<hr>
+	Total: 	<span th:text="${total}"></span>
+	<hr>
+	<a th:href="'./encerrar'">Pagar</a>
+	<a th:href="'../funcionario/home'">voltar</a>
+</body>
+</html>

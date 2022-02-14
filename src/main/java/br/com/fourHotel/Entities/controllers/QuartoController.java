@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.fourHotel.Entities.bo.QuartoBo;
 import br.com.fourHotel.Entities.models.ClienteModel;
+import br.com.fourHotel.Entities.models.PedidoModel;
 import br.com.fourHotel.Entities.models.QuartoModel;
 import br.com.fourHotel.Entities.services.ClienteService;
+import br.com.fourHotel.Entities.services.PedidoService;
 import br.com.fourHotel.Entities.services.QuartoService;
 import br.com.fourHotel.enuns.TipoQuarto;
 import br.com.fourHotel.util.ClienteDados;
+import br.com.fourHotel.util.QuartoDados;
 
 @Controller
 @RequestMapping("/quarto")
@@ -27,6 +30,8 @@ public class QuartoController {
 	private QuartoService qs;
 	@Autowired
 	private ClienteService cs;
+	@Autowired
+	private PedidoService ps;
 	
 	@GetMapping(path = "/lista")
 	public String quartos(Model model) {
@@ -136,6 +141,54 @@ public class QuartoController {
 		QuartoBo.datas(quarto);
 		quarto.setOcupado(true);
 		quarto = qs.atualizar(quarto);
+		
+		return "redirect:../funcionario/home";
+	}
+	
+	@GetMapping(path = "/encerramento")
+	public String encerramento(Model model) {
+
+		QuartoModel quarto = QuartoDados.getQuartoSelecionado();
+		quarto = qs.buscarPorNumero(quarto.getNumeroQuarto());
+		
+		List<PedidoModel> pedidos = new ArrayList<PedidoModel>();
+		pedidos = quarto.getPedidos();
+		
+		double total = 0;
+		for(PedidoModel pedido: pedidos) {
+			total += pedido.getValor();
+		}
+		total += quarto.getValor();
+		
+		model.addAttribute("quarto",quarto);
+		model.addAttribute("pedidos",pedidos);
+		model.addAttribute("total",total);
+		
+		return "encerramento";
+	}
+	
+	@GetMapping(path = "/encerrar")
+	public String encerrar() {
+		
+		QuartoModel quarto = QuartoDados.getQuartoSelecionado();
+		quarto = qs.buscarPorNumero(quarto.getNumeroQuarto());
+		List<PedidoModel> pedidos = new ArrayList<PedidoModel>();
+		//pedidos = quarto.getPedidos();
+		
+		for(PedidoModel pedido: quarto.getPedidos()) {
+			pedidos.add(ps.buscarPorNumero(pedido.getIdPedido()));
+		}
+		
+		quarto.setEstadia(null);
+		quarto.setOcupado(false);
+		quarto.setCliente(null);
+		quarto.setPedidos(null);
+		quarto.setCheckIn(null);
+		quarto = qs.atualizar(quarto);
+		
+		for(PedidoModel pedido: pedidos) {
+			ps.deletar(pedido.getIdPedido());
+		}
 		
 		return "redirect:../funcionario/home";
 	}

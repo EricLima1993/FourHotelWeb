@@ -30,4 +30,8 @@ public class PedidoService {
 	public PedidoModel atualizar(PedidoModel servico) {
 		return pr.save(servico);
 	}
+	
+	public void deletar(Integer id) { 
+		pr.deleteById(id);
+	}
 }
