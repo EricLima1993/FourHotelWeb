@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fourHotel.Entities.models.QuartoModel;
 import br.com.fourHotel.Entities.models.ServicoModel;
 import br.com.fourHotel.Entities.repositories.ServicoRepository;
 

@@ -150,4 +150,22 @@ public class FuncionarioController {
 		
 		return "redirect:../funcionario/home";
 	}
+	
+	@GetMapping(path= "/cadastrof")
+	public String cadastrof(Model model) {
+		FuncionarioModel funcionario = new FuncionarioModel();
+		model.addAttribute("funcionario", funcionario);
+		return "cadastrof";
+	}
+	
+	@PostMapping(path= "/cadastrarf")
+	public String cadastrarf(FuncionarioModel funcionario) {
+		
+		FuncionarioModel obj = new FuncionarioModel();
+
+		obj = fs.cadastrar(funcionario);
+		
+		return "redirect:../funcionario/home";
+	}
+	
 }

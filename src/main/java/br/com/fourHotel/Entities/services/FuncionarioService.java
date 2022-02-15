@@ -23,4 +23,8 @@ public class FuncionarioService {
 		Optional<FuncionarioModel> obj = fr.search(fun.getLogin() ,fun.getSenha());
 		return obj.orElseThrow(() -> new AccountNotFoundException("Senha ou login invalido"));
 	}
+	
+	public FuncionarioModel cadastrar(FuncionarioModel obj) {	
+		return fr.save(obj);
+	}
 }
