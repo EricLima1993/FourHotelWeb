@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de serviço</title>
+</head>
+<body>
+	<a th:href="'../funcionario/home'">Voltar</a>
+	<form th:action="@{./servicocad}" method="POST" th:object="${servico}">
+		
+		Nome: <input type="text" name="nome" th:field="*{nome}" />
+		<br />
+
+		Valor: <input type="text" name="valor" th:field="*{valor}" />
+		<br />
+		
+		<select th:field="*{tipo}">
+			<option value="COMIDA" >Comida</option>
+			<option value="BEBIDA">Bebida</option>
+			<option value="BEBIDA_ALCOOLICA">Bebida Alcoolica</option>
+			<option value="SERVICO">Serviço</option>
+		</select>
+		<input type="submit" value="Cadastrar" />
+			
+	</form>
+</body>
+</html>

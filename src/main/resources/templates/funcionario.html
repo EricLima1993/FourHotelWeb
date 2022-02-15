@@ -9,6 +9,10 @@
 		<a th:href="'./alugar'">Alugar um quarto para um cliente</a>
 		<a th:href="'./pedir'">Fazer um pedido para o cliente</a>
 		<a th:href="'./encerrar'">Encerrar uma estadia</a>
+		<a th:href="'./servico'">Cadastrar um serviço</a>
+		<div th:if="${funcionario.cargo.equals(cargo)}">
+			<a th:href="'./encerrar'">Cadastro</a>
+		</div>
 		<a th:href="'../principal/'">Sair</a>
 	</div>
 		<form method="GET" th:object="${funcionario}">

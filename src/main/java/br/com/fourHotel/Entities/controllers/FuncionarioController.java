@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.fourHotel.Entities.models.ClienteModel;
 import br.com.fourHotel.Entities.models.FuncionarioModel;
 import br.com.fourHotel.Entities.models.QuartoModel;
+import br.com.fourHotel.Entities.models.ServicoModel;
 import br.com.fourHotel.Entities.services.ClienteService;
 import br.com.fourHotel.Entities.services.FuncionarioService;
 import br.com.fourHotel.Entities.services.QuartoService;
+import br.com.fourHotel.Entities.services.ServicoService;
+import br.com.fourHotel.enuns.TipoFuncionario;
+import br.com.fourHotel.enuns.TipoProduto;
 import br.com.fourHotel.util.ClienteDados;
 import br.com.fourHotel.util.FuncionarioDados;
 import br.com.fourHotel.util.QuartoDados;
@@ -32,11 +36,17 @@ public class FuncionarioController {
 	private ClienteService cs;
 	@Autowired
 	private QuartoService qs;
+	@Autowired
+	private ServicoService ss;
 	
 	@GetMapping(path = "/home")
 	public String home(Model model) {
 		FuncionarioModel funcionario = FuncionarioDados.getFuncinarioLogado();
+		
+		TipoFuncionario cargo = TipoFuncionario.GERENTE;
+		
 		model.addAttribute("funcionario", funcionario);
+		model.addAttribute("cargo", cargo);
 		
 		return "funcionario";
 	}
@@ -122,5 +132,22 @@ public class FuncionarioController {
 		} catch (Exception e) {
 			return "redirect:../funcionario/home";
 		}
+	}
+	
+	@GetMapping(path= "/servico")
+	public String cadastro(Model model) {
+		ServicoModel servico = new ServicoModel();
+		model.addAttribute("servico", servico);
+		return "servicocad";
+	}
+	
+	@PostMapping(path= "/servicocad")
+	public String servicoCad(ServicoModel servico, String tipo) {
+		
+		ServicoModel obj = new ServicoModel();
+
+		obj = ss.inserir(servico);
+		
+		return "redirect:../funcionario/home";
 	}
 }

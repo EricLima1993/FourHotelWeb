@@ -31,4 +31,8 @@ public class ServicoService {
 	public ServicoModel atualizar(ServicoModel servico) {
 		return sr.save(servico);
 	}
+	
+	public ServicoModel inserir(ServicoModel servico) {
+		return sr.save(servico);
+	}
 }
