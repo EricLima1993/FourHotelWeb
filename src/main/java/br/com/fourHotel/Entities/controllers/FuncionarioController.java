@@ -22,6 +22,7 @@ import br.com.fourHotel.Entities.services.QuartoService;
 import br.com.fourHotel.Entities.services.ServicoService;
 import br.com.fourHotel.enuns.TipoFuncionario;
 import br.com.fourHotel.enuns.TipoProduto;
+import br.com.fourHotel.enuns.TipoQuarto;
 import br.com.fourHotel.util.ClienteDados;
 import br.com.fourHotel.util.FuncionarioDados;
 import br.com.fourHotel.util.QuartoDados;
@@ -168,4 +169,21 @@ public class FuncionarioController {
 		return "redirect:../funcionario/home";
 	}
 	
+	@GetMapping(path = "/consulta")
+	public String quartos(Model model) {
+
+		List<QuartoModel> quartosT = new ArrayList();
+		List<QuartoModel> quartos = new ArrayList();
+
+		quartosT = qs.buscarTodos();
+		
+		for(QuartoModel quarto: quartosT) {
+			if(quarto.getCliente() != null){
+				quartos.add(quarto);
+			}
+		}
+		model.addAttribute("quartos",quartos);
+
+		return "quartosalugados";
+	}
 }

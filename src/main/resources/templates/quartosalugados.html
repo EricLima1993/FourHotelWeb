@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quartos alugados</title>
+</head>
+<body>
+	<a th:href="'../funcionario/home'">Voltar</a>
+	<th:block th:each="quarto : ${quartos}">
+	<div style="border: solid 1px;">
+			
+		Numero: 	<span th:text="${quarto.numeroQuarto}"></span>
+		Data de saida:	<span th:text="${quarto.checkIn}"></span>
+		Cliente:	<span th:text="${quarto.cliente.nome}"></span>
+		Login do cliente:	<span th:text="${quarto.cliente.login}"></span>
+
+	</div>
+	</th:block>
+</body>
+</html>
